@@ -66,6 +66,7 @@ jobs:
         --region ap-northeast-2 \
         --acl private \
         ./springboot-intro-build.zip s3://jasun/
+
     # Deploy
     - name: Deploy
       env:
@@ -74,7 +75,7 @@ jobs:
       run: |
         aws deploy create-deployment \
         --application-name springboot-intro \
-        --deployment-group-name springboot-intro-deploy-group \
+        --deployment-group-name spring-boot-intro-deploy-group \
         --file-exists-behavior OVERWRITE \
         --s3-location bucket=jasun,bundleType=zip,key=springboot-intro-build.zip \
         --region ap-northeast-2

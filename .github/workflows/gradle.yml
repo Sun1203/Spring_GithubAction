@@ -37,6 +37,7 @@ jobs:
     - uses: actions/checkout@v3
     - run: touch ./src/main/resources/test.properties
     - run: echo "${{ env.test }}" > ./src/main/resources/test.properties
+    - run: cat ./src/main/resources/test.properties
     - uses: actions/upload-artifact@v3
       with:
         name: test.properties

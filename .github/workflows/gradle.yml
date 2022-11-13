@@ -33,13 +33,24 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        
+      
+    - uses: actions/checkout@v3
+    - run: touch ./src/main/resources/test.properties
+    - run: echo "${{ env.test }}" > ./src/main/resources/test.properties
+    - uses: actions/upload-artifact@v3
+      with:
+        name: test.properties
+        path: ./src/main/resources/test.properties
+    
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+        
     - name: Grant execute permission for gradlew
       run : chmod +x gradlew
+      
+      
 
     # Build
     - name: Build with Gradle
